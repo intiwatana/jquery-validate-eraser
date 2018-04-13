@@ -1,100 +1,90 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>jquery-validate-eraser</title>
-<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-
+  <title>jquery-validate-eraser</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-
-	<form id="frm_contactUs">
-			<div class="form_box">
-				<ul>
-					<li><span>
-							<em>NAME <sup>*</sup></em>
-							<input id="id_userName" name="userName" type="text" />
-						</span>
-						<span>
-							<em>EMAIL <sup>*</sup></em>
-							<input id="id_email" name="email" type="text" />
-						</span>
-					</li>
-					<li>
-						<span>
-							<em>SUBJECT <sup>*</sup></em>
-							<input id="id_subject" name="subject" type="text" />
-						</span>
-					</li>
-					<li>
-						<span>
-							<em>MESSAGE <sup>*</sup></em>
-							<textarea id="id_message" name="message"></textarea>
-						</span>
-					</li>
-				</ul>
-				<div class="btn_center">
-					<a id="a_contactUs" href="#contact" class="btn_send">보내기</a>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.min-1.17.0.js"></script>
-	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-validate-mobi-HB.js"></script>
-	<script type="text/javascript">
+  <form>
+    <div>
+      <ul>
+        <li>
+          <label for="id_userName">NAME<sup>*</sup></label>
+          <input id="id_userName" type="text" />
+        </li>
+        <li>
+          <label for="id_email">EMAIL<sup>*</sup></label>
+          <input id="id_email" type="text" />
+        </li>
+        <li>
+          <label for="id_subject">SUBJECT<sup>*</sup></label>
+          <input id="id_subject" type="text" />
+        </li>
+        <li>
+          <label for="id_message">MESSAGE<sup>*</sup></label>
+          <textarea id="id_message"></textarea>
+        </li>
+      </ul>
+      <div>
+        <a href="#">SEND</a>
+      </div>
+    </div>
+    </div>
+  </form>
 
 
-		$(document).ready(function() {
+  <script type="text/javascript" src="./jquery-validate-eraser-1.0.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
 
-			init_txtBaliBot();
-		});
+      init_txtBaliBot();
+    });
 
-		function init_txtBaliBot(){
+    function init_txtBaliBot() {
 
-			$('#id_userName'	).txtBaliBot({
-				maxlength	:	50		,
-				hangul		:	true	,
-				ENGLISH		:	true	,
-				english		:	true	,
-				digits		:	true	,
-				space		:	true	,
-				special		:	true
-			});
-			$('#id_email'		).txtBaliBot({
-				maxlength	:	50		,
-				hangul		:	false	,
-				ENGLISH		:	true	,
-				english		:	true	,
-				digits		:	true	,
-				space		:	false	,
-				special		:	false	,
-				email		:	true
-			},{
-				email		:	/[\.\-\_\@]/
-			});
-			$('#id_subject'		).txtBaliBot({
-				maxlength	:	300		,
-				hangul		:	true	,
-				ENGLISH		:	true	,
-				english		:	true	,
-				digits		:	true	,
-				space		:	true	,
-				special		:	true
-			});
-			$('#id_message'		).txtBaliBot({
-				maxlength	:	3000	,
-				hangul		:	true	,
-				ENGLISH		:	true	,
-				english		:	true	,
-				digits		:	true	,
-				space		:	true	,
-				special		:	true
-			});
-		}
-
-	</script>
+      $('#id_userName').txtBaliBot({
+        maxlength: 50,
+        hangul: true,
+        ENGLISH: true,
+        english: true,
+        digits: true,
+        space: true,
+        special: true
+      });
+      $('#id_email').txtBaliBot({
+        maxlength: 50,
+        hangul: false,
+        ENGLISH: true,
+        english: true,
+        digits: true,
+        space: false,
+        special: false,
+        email: true
+      }, {
+        email: /[\.\-\_\@]/
+      });
+      $('#id_subject').txtBaliBot({
+        maxlength: 300,
+        hangul: true,
+        ENGLISH: true,
+        english: true,
+        digits: true,
+        space: true,
+        special: true
+      });
+      $('#id_message').txtBaliBot({
+        maxlength: 3000,
+        hangul: true,
+        ENGLISH: true,
+        english: true,
+        digits: true,
+        space: true,
+        special: true
+      });
+    }
+  </script>
 </body>
+
 </html>
