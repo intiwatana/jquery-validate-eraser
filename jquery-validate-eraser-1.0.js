@@ -1,8 +1,7 @@
 /*!
  * Support for jQuery Validation Plugin v1.17.0
- * And add silentRemover on keypress, keyup with Validation check
  *
- * created 2017 by HyunByn.jang
+ * created 2017 by merryyear45@gmail.com
  */
 (function($){
 	$.fn.txtBaliBot = function(validO, opts){
