@@ -4,5 +4,11 @@
 ### Demo Page
 URL : https://jquery-validate-eraser.surge.sh
 
-### Introduction
+### CDN
 CDN: https://jquery-validate-eraser.surge.sh/jquery-validate-eraser-1.0.js
+
+
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
