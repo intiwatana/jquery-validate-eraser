@@ -2,6 +2,7 @@
  * Support for jQuery Validation Plugin v1.17.0
  * created 2017 by merryyear45@gmail.com
  */
+ 
 (function($){
 	$.fn.txtBaliBot = function(validO, opts){
 		return this.each(function(){
