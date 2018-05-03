@@ -3,57 +3,67 @@
 
 <head>
   <title>jquery-validate-eraser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+
   <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <form>
-    <div>
-      <ul>
-        <li>
-          <label for="id_userName">NAME<sup>*</sup></label>
-          <input id="id_userName" type="text" />
-        </li>
-        <li>
-          <label for="id_email">EMAIL<sup>*</sup></label>
-          <input id="id_email" type="text" />
-        </li>
-        <li>
-          <label for="id_subject">SUBJECT<sup>*</sup></label>
-          <input id="id_subject" type="text" />
-        </li>
-        <li>
-          <label for="id_message">MESSAGE<sup>*</sup></label>
-          <textarea id="id_message"></textarea>
-        </li>
-      </ul>
-      <div>
-        <a href="#">SEND</a>
+  <div class="container" style="padding-top:50px;">
+    <h1 class="title">jquery-validate-eraser</h1>
+    <div class="notification">
+      <div class="field">
+        <label class="label">NAME<sup>*</sup>(한글 4자리만 허용)</label>
+        <div class="control">
+          <input id="id_userName" class="input" type="text" placeholder="(한글 4자리만 허용)">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">EMAIL<sup>*</sup>(영문 대/소문자, 공백, -_@. 허용)</label>
+        <div class="control">
+          <input id="id_email" class="input" type="text" placeholder="(영문 대/소문자, 공백, -_@. 허용)">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">PHONE<sup>*</sup>(숫자만 허용)</label>
+        <div class="control">
+          <input id="id_phoneNum" class="input" type="text" placeholder="(숫자만 허용)">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">SUBJECT<sup>*</sup>(모두 허용)</label>
+        <div class="control">
+          <input id="id_subject" class="input" type="text" placeholder="(모두 허용)">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Message<sup>*</sup>(모두 허용)</label>
+        <div class="control">
+          <textarea id="id_message" class="textarea" placeholder="(모두 허용)"></textarea>
+        </div>
       </div>
     </div>
-    </div>
-  </form>
-
+  </div>
 
   <script type="text/javascript" src="./jquery-validate-eraser-1.0.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-
-      init_txtBaliBot();
+      init_inputEraser();
     });
 
-    function init_txtBaliBot() {
+    function init_inputEraser() {
 
-      $('#id_userName').txtBaliBot({
-        maxlength: 50,
+      $('#id_userName').inputEraser({
+        maxlength: 4,
         hangul: true,
-        ENGLISH: true,
-        english: true,
-        digits: true,
-        space: true,
-        special: true
+        ENGLISH: false,
+        english: false,
+        digits: false,
+        space: false,
+        special: false
       });
-      $('#id_email').txtBaliBot({
+      $('#id_email').inputEraser({
         maxlength: 50,
         hangul: false,
         ENGLISH: true,
@@ -65,7 +75,16 @@
       }, {
         email: /[\.\-\_\@]/
       });
-      $('#id_subject').txtBaliBot({
+      $('#id_phoneNum').inputEraser({
+        maxlength: 11,
+        hangul: false,
+        ENGLISH: false,
+        english: false,
+        digits: true,
+        space: false,
+        special: false
+      });
+      $('#id_subject').inputEraser({
         maxlength: 300,
         hangul: true,
         ENGLISH: true,
@@ -74,7 +93,7 @@
         space: true,
         special: true
       });
-      $('#id_message').txtBaliBot({
+      $('#id_message').inputEraser({
         maxlength: 3000,
         hangul: true,
         ENGLISH: true,

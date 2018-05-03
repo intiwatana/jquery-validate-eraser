@@ -2,19 +2,23 @@
  * Support for jQuery Validation Plugin v1.17.0
  * created 2017 by merryyear45@gmail.com
  */
- 
+
+ if (typeof jQuery === 'undefined') {
+   throw new Error('inputEraser\'s JavaScript requires jQuery')
+ }
+
 (function($){
-	$.fn.txtBaliBot = function(validO, opts){
+	$.fn.inputEraser = function(validO, opts){
 		return this.each(function(){
-			var options = $.extend({}, $.fn.txtBaliBot.reg_exp_chr, opts || {});
+			var options = $.extend({}, $.fn.inputEraser.reg_exp_chr, opts || {});
 			var $el = $(this);
 			var chrExpStr = "";
 			var chrExp, chrNegExp, senExp;
-			var UserAgent = navigator.userAgent;
+			var userAgent = navigator.userAgent;
 			var isMobile = false;
 
-			if (	(UserAgent.match(/iPhone|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null	)
-				|| 	(UserAgent.match(/LG|SAMSUNG|Samsung/) != null	)	){
+			if (	(userAgent.match(/iPhone|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null	)
+				|| 	(userAgent.match(/LG|SAMSUNG|Samsung/) != null	)	){
 				isMobile = true;
 			}
 
@@ -32,8 +36,8 @@
 				}
 
 				//key입력 이후 사용할 벨류
-				if(validO[chk] && $.fn.txtBaliBot.reg_exp_sen[chk]){
-					senExp = $.fn.txtBaliBot.reg_exp_sen[chk];
+				if(validO[chk] && $.fn.inputEraser.reg_exp_sen[chk]){
+					senExp = $.fn.inputEraser.reg_exp_sen[chk];
 				}
 
 			}
@@ -71,8 +75,7 @@
 
 			// 문자 입력후에 표현식에 맞지 않으면 삭제 하는 로직
 			$el.on('change.baliBot keyup.baliBot',function(e){
-				//e.preventDefault();
-				//e.stopPropagation();
+
 				var lastChr = (e.target.value).slice((e.target.value).length-1);
 				var areA = new RegExp(/[\ㆍ\ᆢ]/,"" );
 				if(isMobile){
@@ -82,11 +85,15 @@
 				}else{
 					$(e.target).val(e.target.value.replace(chrNegExp, ''));
 				}
-
+        if($(e.target).attr('maxlength')<e.target.value.length){
+          e.target.value = e.target.value.substr(0,$(e.target).attr('maxlength'));
+        }
 
 			});
+
 			// 모바일의 경우를 위해 분기
 			$el.on('blur.baliBot',function(e){
+        e.target.value = e.target.value.substr(0,$(e.target).attr('maxlength'));
 				$(e.target).val(e.target.value.replace(chrNegExp, ''));
 			});
 
@@ -171,7 +178,7 @@
 		});
 	};
 
-	$.fn.txtBaliBot.reg_exp_chr = {
+	$.fn.inputEraser.reg_exp_chr = {
 				hangul : new RegExp(/[ㄱ-ㅎㅏ-ㅣ가-힣]/,"") ,
 				ENGLISH : new RegExp(/[A-Z]/ , ""),
 				english : new RegExp(/[a-z]/ , ""),
@@ -179,7 +186,7 @@
 				space   : new RegExp(/[\s]/ , ""),
 				special : new RegExp(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/,"" )
 	}
-	$.fn.txtBaliBot.reg_exp_sen = {
+	$.fn.inputEraser.reg_exp_sen = {
 				email		: new RegExp(/^[\w]([-_\.]?[\w])*@[\w]([-_\.]?[\w])*\.[\w]{2,3}$/i,"gm") ,
 				appURL		: new RegExp(/^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?$/,"gmi") ,
 				phoneNum_kr	: new RegExp(/^01[\d]{1}[\d]{4}[\d]{4}$/,"g")
